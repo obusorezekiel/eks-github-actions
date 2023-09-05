@@ -1,0 +1,24 @@
+name: Node js app deploy to eks
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v3
+    
+    - name: Install kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'v1.24.0' # default is latest stable
+      id: install
+
+    - name: Configure AWS credentials from Test account
+      uses: aws-actions/configure-aws-credentials@v3
+      with:
+        
