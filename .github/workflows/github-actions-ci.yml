@@ -30,6 +30,12 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
+    
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
 
     - name: Build and push
       uses: docker/build-push-action@v4
@@ -38,7 +44,7 @@ jobs:
         tags: user/app:latest
       
     - name: Update kube config
-      run: aws eks update-kubeconfig --name primuslearning
+      run: aws eks update-kubeconfig --name cluster
     
     - name: Deploy to EKS
       run: |
