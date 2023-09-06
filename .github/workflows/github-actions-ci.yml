@@ -28,7 +28,7 @@ jobs:
     - name: Build, tag and push docker image
       env: 
         REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        REPOSITORY: ezekiel-umesi
+        REPOSITORY: obusorezekiel
         IMAGE_TAG: latest
       run: |
         docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
